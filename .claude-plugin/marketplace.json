@@ -1,0 +1,11 @@
+{
+  "name": "security-audit",
+  "owner": { "name": "security-audit" },
+  "plugins": [
+    {
+      "name": "security-audit",
+      "source": "./",
+      "description": "Parallel read-only agent investigation of security and fraud incidents, looped until every question about the attacker is answered."
+    }
+  ]
+}

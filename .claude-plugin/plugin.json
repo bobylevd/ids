@@ -1,0 +1,5 @@
+{
+  "name": "security-audit",
+  "description": "Parallel read-only agent investigation of security and fraud incidents, looped until every question about the attacker is answered.",
+  "version": "1.0.0"
+}
