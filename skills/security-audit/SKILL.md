@@ -23,7 +23,8 @@ Lane agent type: the type in `config.md`.
 3. Find `<work dir>`. If it exists, resume: read `STATE.md` and `BRIEF.md`, check the ledger lanes with ListAgents, and continue from the recorded step and round. If it is new, create it with `lanes/`, `BRIEF.md` (format in `references/lanes.md`) and `STATE.md` (`references/state.md`).
 4. Run the identity check from `config.md`. If it fails, ask the user to sign in.
 5. Read the existing reports in the incidents folder. List in BRIEF.md each known issue with its status and last-seen time. Lanes report known issues only as new activity after that time; a new report covers only new issues.
-6. Start the first wave in ONE message: `activity`, `edge`, `api`, `identity`, `db`, `history`, plus each business lane whose flow the indicators touch (`references/lanes.md`). Start only lanes that `config.md` has sources for.
+6. Write the report file now (`references/report.md`): the facts known, Status INVESTIGATING, empty sections. Tell the user its path. The user reads it while the investigation runs.
+7. Start the first wave in ONE message: `activity`, `edge`, `api`, `identity`, `db`, `history`, plus each business lane whose flow the indicators touch (`references/lanes.md`). Start only lanes that `config.md` has sources for.
 
 Update `STATE.md` at every lane start, lane result, round end, access grant and created resource.
 
@@ -35,6 +36,7 @@ Repeat for each lane result:
 1. Add its NEW INDICATORS and open questions to BRIEF.md.
 2. Send new indicators to running lanes that cover them (SendMessage), or start new lanes for new paths. Start independent lanes in one message.
 3. When a lane reports on an indicator, write the lane, source and time range into the Coverage column of its register row.
+4. Start an UPDATE report run for the lane file. Do not wait for the round to end.
 
 A round ends when all its lanes returned. Write the round into `STATE.md`.
 
@@ -80,10 +82,11 @@ Repeat until the grep prints no row. Then run the result checks:
 
 ## 5. Report
 
-Each report run is a new `report` lane (prompt in `references/lanes.md`). It reads `BRIEF.md`, `STATE.md` and every lane file, and replaces the full report (`references/report.md`).
+The report exists from step 1 and grows with each lane result. Each report run is a new `report` lane (prompt in `references/lanes.md`).
 
-- DRAFT run: at the end of the first wave, when severity or exposure changes, and when the user asks.
-- FINAL run: after the stop conditions hold.
+- UPDATE run: after each lane result. It reads the report and the new lane file, and merges the findings into the report. One UPDATE run at a time; a later lane result waits for the run before it.
+- FINAL run: after the stop conditions hold. It rebuilds the full report from all lane files.
+- No security issue found: tell the user the result, and delete the report and its data folder when the user agrees.
 
 After the FINAL run:
 

@@ -29,15 +29,17 @@ Use the strongest model for lanes that reason over code or value flows; a faster
 | `block-impact`, `change` | see SKILL.md step 4 | |
 | `gap-<n>` | the gap sweep prints a row | Runs the rewritten query to the end; sets the row in the original lane file to DONE with its own file in Note |
 | `verify` | open questions remain, or `recheck.sh` prints a defect | One status per question |
-| `report` | see SKILL.md step 5 | Rebuilds the report from all lane files |
+| `report` | after each lane result (UPDATE); at the end (FINAL) | Merges a lane file into the report; FINAL rebuilds it from all lane files |
 
 ## Report lane prompt
 
 ```
-You write an incident report. Working dir: <work dir>. Read BRIEF.md, STATE.md, every lanes/*.md,
+You write an incident report. Working dir: <work dir>. Read BRIEF.md, STATE.md,
 <config dir>/config.md and <skill dir>/references/report.md. Do not redo lane work.
-Topic: <one line>. Run: <DRAFT | FINAL>. Defects from the last check: <list or none>.
-1. Write <incidents folder>/incident-<date>-<slug>.md from the lane files. Replace the full file.
+Topic: <one line>. Run: <UPDATE with lanes/<name>.md | FINAL>. Defects from the last check: <list or none>.
+1. UPDATE: read <incidents folder>/incident-<date>-<slug>.md and the named lane file. Merge the findings
+   into the report: summary, impact, timeline, indicators, open questions, Last update.
+   FINAL: read every lanes/*.md and replace the full report.
 2. Copy the lane files and extracts that the report links to into <incidents folder>/<date>-<slug>/ after masking.
 Return a summary of 15 lines or fewer.
 ```

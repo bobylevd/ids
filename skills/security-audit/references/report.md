@@ -1,6 +1,6 @@
 # Report
 
-File: `incident-<date>-<slug>.md` in the incidents folder, in the language from `config.md`. Data folder: `<date>-<slug>/` with masked copies of the lane files and extracts. The date is the first confirmed attacker activity.
+File: `incident-<date>-<slug>.md` in the incidents folder, in the language from `config.md`. Data folder: `<date>-<slug>/` with masked copies of the lane files and extracts. The date is the date of the work dir. The file exists from the start of the investigation and each lane result updates it.
 
 ## Rules
 
@@ -27,7 +27,7 @@ File: `incident-<date>-<slug>.md` in the incidents folder, in the language from 
 | Field | Value |
 |---|---|
 | Severity | SEV<n>: <one-line reason> |
-| Status | <OPEN \| CONTAINED \| RESOLVED \| CLOSED> |
+| Status | <INVESTIGATING \| OPEN \| CONTAINED \| RESOLVED \| CLOSED> |
 | Exposure | <STILL EXPOSED \| CLOSED on <date> by <change>> |
 | Incident owner | |
 | First attacker activity | <UTC time> ([evidence](...)) |
