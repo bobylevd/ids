@@ -11,28 +11,28 @@ Questions: 1. ...
 Write lanes/<name>.md and return a summary of <N> lines, NEW INDICATORS first.
 ```
 
-Use the strongest model for lanes that reason over code or value flows; a faster one for wide log sweeps.
+Set `model` in every Agent call from the Model column of the catalog. A lane that returns a wrong or thin result two times starts again on `opus`.
 
 ## Catalog
 
-| Lane | When | Covers |
-|---|---|---|
-| `activity` | first wave, after each block, before the final report | Last-seen per indicator on every source; verdict ACTIVE / DORMANT / UNCLEAR |
-| `edge` | first wave | Every request from the indicators on all edge logs: first seen, hosts, paths, status, UA, TLS fingerprint, blocks |
-| `api` | first wave | Endpoints hit, auth failures, id enumeration, error spikes, handler code |
-| `identity` | first wave | Sign-ups, logins, sessions, API keys and tokens, MFA changes, admin actions |
-| `db` | first wave | Database ground truth. Reports databases it cannot read |
-| `history` | first wave | Real start of activity, fingerprint/ASN pivots across all retention |
-| `<business>` | indicators touch the flow | What the actor created, changed, read or took; value gained; trust in caller |
-| `code-audit` | a flaw is found | Same flaw elsewhere, file:line, deployed version |
-| `exposure` | an endpoint is reachable that should not be | Full request path with auth per hop, deployed version, scope |
-| `paid-scan` | data is only in a paid scan engine | Query files and one runner script with a budget and a cleanup list; the user runs it; a second run analyses the result |
-| `block-impact`, `change` | see SKILL.md step 4 | |
-| `gap-<n>` | the gap sweep prints a row | Runs the rewritten query to the end; sets the row in the original lane file to DONE with its own file in Note |
-| `verify` | open questions remain, or `recheck.sh` prints a defect | One status per question |
-| `scribe` | first message; runs to the end | Owns BRIEF.md, STATE.md and the report; merges each lane result into them |
-| `checks` | gap sweep; after the FINAL report | Runs the grep and the check scripts; returns only the defect lines |
-| `report` | at the end (FINAL) | Rebuilds the report from all lane files |
+| Lane | Model | When | Covers |
+|---|---|---|---|
+| `activity` | sonnet | first wave, after each block, before the final report | Last-seen per indicator on every source; verdict ACTIVE / DORMANT / UNCLEAR |
+| `edge` | sonnet | first wave | Every request from the indicators on all edge logs: first seen, hosts, paths, status, UA, TLS fingerprint, blocks |
+| `api` | sonnet | first wave | Endpoints hit, auth failures, id enumeration, error spikes, handler code |
+| `identity` | sonnet | first wave | Sign-ups, logins, sessions, API keys and tokens, MFA changes, admin actions |
+| `db` | opus | first wave | Database ground truth. Reports databases it cannot read |
+| `history` | sonnet | first wave | Real start of activity, fingerprint/ASN pivots across all retention |
+| `<business>` | opus | indicators touch the flow | What the actor created, changed, read or took; value gained; trust in caller |
+| `code-audit` | opus | a flaw is found | Same flaw elsewhere, file:line, deployed version |
+| `exposure` | opus | an endpoint is reachable that should not be | Full request path with auth per hop, deployed version, scope |
+| `paid-scan` | sonnet | data is only in a paid scan engine | Query files and one runner script with a budget and a cleanup list; the user runs it; a second run analyses the result |
+| `block-impact`, `change` | opus | see SKILL.md step 4 | |
+| `gap-<n>` | sonnet | the gap sweep prints a row | Runs the rewritten query to the end; sets the row in the original lane file to DONE with its own file in Note |
+| `verify` | opus | open questions remain, or `recheck.sh` prints a defect | One status per question |
+| `scribe` | sonnet | first message; runs to the end | Owns BRIEF.md, STATE.md and the report; merges each lane result into them |
+| `checks` | haiku | gap sweep; after the FINAL report | Runs the grep and the check scripts; returns only the defect lines |
+| `report` | opus | at the end (FINAL) | Rebuilds the report from all lane files |
 
 ## Scribe lane prompt
 
