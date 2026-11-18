@@ -16,7 +16,7 @@ Step: <1–5>. Round: <N>. Last update: <UTC time>.
 |---|---|---|---|
 
 ## Report runs
-| Run (UPDATE <lane> / FINAL) | Time (UTC) | check-masking |
+| FINAL run | Time (UTC) | check-masking |
 |---|---|---|
 
 ## Cleanup
