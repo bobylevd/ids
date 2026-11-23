@@ -1,6 +1,6 @@
 # First-run setup
 
-Goal: write `.claude/ids/config.md` and `.claude/ids/sources/` in the project. Commit them to share the setup with the team.
+Goal: write `.claude/ids/config.md`, `.claude/ids/sources/`, `.claude/ids/indicators.tsv` and `.claude/ids/watch/` in the project, and `open-items.json` in the incidents folder. Commit them to share the setup with the team.
 
 1. Ask permission to inspect the machine read-only (kube contexts, cloud profiles, the infra repo the user names). Show what you found; the user corrects it.
 2. Ask the rest with AskUserQuestion, up to 4 questions at a time. Ask only what discovery did not answer. Write "none" for anything the user lacks; lanes skip it.
@@ -8,6 +8,8 @@ Goal: write `.claude/ids/config.md` and `.claude/ids/sources/` in the project. C
 4. Write one script per query source into `sources/`: `<source>.sh "<query>"` prints the rows with a header row. The script holds the access command, the read-only identity and the time limit.
 5. Write `config.md` in the format below. No secrets, only secret store paths.
 6. Run one cheap query per source script. Mark each OK or FAILED and fix failures with the user.
+7. Write `indicators.tsv` with the header row `type`, `value`, `verdict`, `incident`, `first_seen`, `last_seen`, `note` (tab-separated) and make the folder `watch/`. `ledger learn` and the `learn` lane fill them at the end of each investigation.
+8. Run `<skill dir>/scripts/items.py init <incidents folder>`. It makes `open-items.json` and the two lists.
 
 ## config.md format
 
@@ -43,6 +45,12 @@ Code and IaC locations, dry-run commands, git rules (who commits, pushes, applie
 ## Owners
 Incident owner, support, external providers.
 
+## Decisions
+Standing answers of the user, one per line: paid scans, access grants for the lanes, blocks, live checks. The orchestrator applies them without a question.
+
+## Known good
+Own egress IPs, staff VPN and QA ranges, partner tooling, monitors, provider callback IPs. The `verify` lane checks an `actor` verdict against this list.
+
 ## Output
-Work root, incidents folder, report language, reporting currency, writing style.
+Incidents folder (one folder per investigation, the reports and the open-items lists), report language (one), reporting currency, writing style.
 ```

@@ -1,0 +1,29 @@
+{
+ "classes": {
+  "intrusion": ["activity", "edge", "api", "identity", "db", "history"],
+  "fraud": ["activity", "identity", "db", "history"],
+  "availability": ["activity", "edge", "control", "impact", "changes", "history"],
+  "triage": ["activity", "changes", "impact"],
+  "hunt": ["hunt-cloud", "hunt-network", "hunt-platform", "hunt-code", "hunt-data", "hunt-edge", "hunt-api", "hunt-identity", "hunt-admin"]
+ },
+ "lanes": {
+  "activity": "Is the actor active now? Run watch.sh first. Give the last-seen time per indicator on every source and one verdict: ACTIVE, DORMANT or UNCLEAR.",
+  "edge": "What did the indicators send through the edge? First seen, hosts, paths, status, user agent, TLS fingerprint, blocks, on all edge logs.",
+  "api": "Which endpoints did the actor reach? Authentication failures, id enumeration, error spikes, and the handler code of each endpoint that answered.",
+  "identity": "Which accounts did the actor make or use? Sign-ups, logins, sessions, API keys and tokens, MFA changes, admin actions.",
+  "db": "What does the database show as ground truth for the actor's objects and changes? Name each database you cannot read.",
+  "history": "When did this activity start? Search the full retention of each source for the fingerprint, ASN and path signature before you answer.",
+  "control": "Which defence acted on the request path (WAF, rate limit, challenge, autoscaling)? When, on which requests, and why not sooner? Compare the live config with the code.",
+  "impact": "What failed, for which tenants and flows, from when to when? Give the money side effects (failed callbacks, lost transactions).",
+  "changes": "Which deploys, config and infra changes, scaling events and audit-log events happened in the hours before the start? One verdict per change: CAUSE or NOT CAUSE.",
+  "hunt-cloud": "Cloud control plane: is there a sign of an attacker in the audit logs, IAM, network rules and public resources?",
+  "hunt-network": "Network: is there a sign of an attacker in flow logs, open ports and egress?",
+  "hunt-platform": "Platform: is there a sign of an attacker in the clusters, workloads, secrets and the deploy system?",
+  "hunt-code": "Code and CI: is there a sign of an attacker in the repositories, pipelines, tokens and packages?",
+  "hunt-data": "Data stores: is there a sign of an attacker in database access, exports and public storage?",
+  "hunt-edge": "Edge: is there a sign of an attacker in CDN, WAF and load balancer logs (scans with 2xx, floods, new tooling)?",
+  "hunt-api": "APIs: is there a sign of an attacker in enumeration, authentication failures and private endpoints that answer?",
+  "hunt-identity": "Identity: is there a sign of an attacker in sign-ups, logins, sessions, resets and MFA changes?",
+  "hunt-admin": "Admin tools: is there a sign of an attacker in back-office use, operator accounts, roles and money actions?"
+ }
+}
