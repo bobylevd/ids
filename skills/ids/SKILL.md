@@ -1,5 +1,5 @@
 ---
-name: security-audit
+name: ids
 description: Investigates a security or fraud incident by running parallel read-only agents on every attack path, feeding each new finding back into new agents, and repeating until every question about what the attacker did is answered. Keeps a durable work folder, so an investigation continues in a new session. Interviews the user about their stack on the first run. Use when the user reports an attack, abuse, a leaked or exposed endpoint, or asks "what happened" or "what did we miss".
 ---
 
@@ -19,7 +19,7 @@ All other work goes to a lane: reading lane files, extracts, logs and earlier re
 
 Paths:
 - `<skill dir>`: this folder. Use its absolute path in prompts.
-- `<config dir>`: `.claude/security-audit/` in the project. It holds `config.md` (the stack) and `sources/` (one query script per source).
+- `<config dir>`: `.claude/ids/` in the project. It holds `config.md` (the stack) and `sources/` (one query script per source).
 - `<work dir>`: `<work root from config.md>/<YYYY-MM-DD>-<slug>/`, date of the start.
 
 Lane agent type: the type in `config.md`.

@@ -1,6 +1,6 @@
 # First-run setup
 
-Goal: write `.claude/security-audit/config.md` and `.claude/security-audit/sources/` in the project. Commit them to share the setup with the team.
+Goal: write `.claude/ids/config.md` and `.claude/ids/sources/` in the project. Commit them to share the setup with the team.
 
 1. Ask permission to inspect the machine read-only (kube contexts, cloud profiles, the infra repo the user names). Show what you found; the user corrects it.
 2. Ask the rest with AskUserQuestion, up to 4 questions at a time. Ask only what discovery did not answer. Write "none" for anything the user lacks; lanes skip it.
@@ -12,7 +12,7 @@ Goal: write `.claude/security-audit/config.md` and `.claude/security-audit/sourc
 ## config.md format
 
 ```markdown
-# security-audit config
+# ids config
 
 ## System
 - What it does; tenancy (tenant term, e.g. org, project)

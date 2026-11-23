@@ -1,9 +1,9 @@
 {
-  "name": "security-audit",
-  "owner": { "name": "security-audit" },
+  "name": "ids",
+  "owner": { "name": "ids" },
   "plugins": [
     {
-      "name": "security-audit",
+      "name": "ids",
       "source": "./",
       "description": "Parallel read-only agent investigation of security and fraud incidents, looped until every question about the attacker is answered."
     }
